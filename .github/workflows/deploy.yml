@@ -21,8 +21,9 @@ jobs:
         uses: actions/checkout@v4
       - name: Install, build, and upload your site
         uses: withastro/action@v3
-        # (This magical action automatically detects if you use npm, yarn, or pnpm!)
-
+        with:
+          node-version: 22    # <-- Add these two lines exactly like this!
+ 
   deploy:
     needs: build
     runs-on: ubuntu-latest
