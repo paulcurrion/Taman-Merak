@@ -1,78 +1,124 @@
 @import 'tailwindcss';
 
 @theme {
-    --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    --color-primary: #f67280;
-    --color-primary-content: #101828;
-    --color-complementary: #355c7d;
-    --background-image-noise: linear-gradient(
-            to bottom,
-            color-mix(in oklab, var(--color-gray-950) 0%, transparent),
-            color-mix(in oklab, var(--color-gray-950) 100%, transparent)
-        ),
-        url('/images/noise.png');
+    --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol';
+    --color-bg: #0c0804;
+    --color-bg-card: #161008;
+    --color-gold: #c8a951;
+    --color-gold-light: #e8d5a0;
+    --color-gold-dim: #96783a;
+    --color-cream: #ede4d3;
+    --color-cream-muted: #9e9280;
 }
 
 @layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
     h1 {
-        @apply text-4xl font-bold tracking-tight sm:text-5xl;
+        @apply text-5xl font-extralight tracking-[0.15em] sm:text-7xl;
+        color: var(--color-gold-light);
     }
 
     h2 {
-        @apply text-2xl font-bold sm:text-3xl;
+        @apply text-base font-medium tracking-[0.3em] uppercase sm:text-lg;
+        color: var(--color-gold);
     }
 
-    a:not(.btn) {
-        @apply underline transition hover:opacity-80;
-    }
-
-    pre {
-        @apply p-6 overflow-x-auto rounded-lg;
-    }
-
-    :not(pre) > code {
-        @apply px-1 py-0.5 font-mono rounded bg-gray-900 text-primary;
-        font-size: 0.9em;
+    section[id] {
+        scroll-margin-top: 2rem;
     }
 }
 
 @layer components {
-    .markdown {
-        > * {
-            @apply my-6;
-        }
-
-        :where(h1, h2) {
-            @apply mt-12 mb-6;
-        }
-
-        > :first-child {
-            @apply mt-0;
-        }
-
-        > :last-child {
-            @apply mb-0;
-        }
+    .track-card {
+        @apply flex items-center gap-5 border border-gold/15 rounded-sm px-5 py-4 transition-colors;
+        background: var(--color-bg-card);
     }
 
-    .btn {
-        @apply inline-flex items-center justify-center gap-2 bg-primary text-primary-content cursor-pointer text-center font-semibold no-underline transition-colors;
-        padding: var(--btn-py, 0.875rem) var(--btn-px, 1.25rem);
-        font-size: var(--btn-font-size, 0.875rem);
-        border-radius: var(--btn-border-radius, 0.25rem);
-
-        &:hover {
-            @apply bg-primary/85;
-        }
-
-        &:disabled {
-            @apply text-gray-400 bg-gray-700;
-        }
+    .track-card:hover {
+        @apply border-gold/30;
+        background: #1c1410;
     }
 
-    .btn-lg {
-        --btn-font-size: 1.125rem;
-        --btn-px: 1.5rem;
-        --btn-py: 1.125rem;
+    .play-btn {
+        @apply w-11 h-11 shrink-0 rounded-full border border-gold/25 flex items-center justify-center text-gold/50 transition-all cursor-pointer bg-transparent;
+    }
+
+    .play-btn:hover {
+        @apply border-gold/50 text-gold/80;
+    }
+
+    .photo-card {
+        @apply aspect-square overflow-hidden rounded-sm border border-gold/10 transition-all;
+        background: var(--color-bg-card);
+    }
+
+    .photo-card:hover {
+        @apply border-gold/25;
+    }
+
+    /* Batik-inspired placeholder patterns for gallery */
+    .photo-pattern-1 {
+        background: repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 12px,
+                rgba(200, 169, 81, 0.04) 12px,
+                rgba(200, 169, 81, 0.04) 13px
+            ),
+            var(--color-bg-card);
+    }
+
+    .photo-pattern-2 {
+        background: radial-gradient(circle at 30% 30%, rgba(200, 169, 81, 0.06) 2px, transparent 2px),
+            radial-gradient(circle at 70% 70%, rgba(200, 169, 81, 0.06) 2px, transparent 2px), var(--color-bg-card);
+        background-size: 20px 20px;
+    }
+
+    .photo-pattern-3 {
+        background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 12px,
+                rgba(200, 169, 81, 0.04) 12px,
+                rgba(200, 169, 81, 0.04) 13px
+            ),
+            var(--color-bg-card);
+    }
+
+    .photo-pattern-4 {
+        background: radial-gradient(circle at 50% 50%, rgba(200, 169, 81, 0.05) 4px, transparent 4px),
+            var(--color-bg-card);
+        background-size: 24px 24px;
+    }
+
+    .photo-pattern-5 {
+        background: linear-gradient(
+                0deg,
+                transparent 49%,
+                rgba(200, 169, 81, 0.03) 49%,
+                rgba(200, 169, 81, 0.03) 51%,
+                transparent 51%
+            ),
+            linear-gradient(
+                90deg,
+                transparent 49%,
+                rgba(200, 169, 81, 0.03) 49%,
+                rgba(200, 169, 81, 0.03) 51%,
+                transparent 51%
+            ),
+            var(--color-bg-card);
+        background-size: 18px 18px;
+    }
+
+    .photo-pattern-6 {
+        background: radial-gradient(circle at 25% 25%, rgba(200, 169, 81, 0.05) 3px, transparent 3px),
+            radial-gradient(circle at 75% 75%, rgba(200, 169, 81, 0.05) 3px, transparent 3px),
+            radial-gradient(circle at 50% 50%, rgba(200, 169, 81, 0.03) 6px, transparent 6px),
+            var(--color-bg-card);
+        background-size: 28px 28px;
     }
 }

@@ -1,19 +1,105 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Markdown from '../components/Markdown.astro';
+import WayangDivider from '../components/WayangDivider.astro';
 
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
+export const prerender = true;
 
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+const tracks = [
+    { title: 'Lancaran Manyar Sewu', desc: 'Javanese classical', duration: '5:42' },
+    { title: 'Ladrang Wilujeng', desc: 'Welcome piece', duration: '8:15' },
+    { title: 'Ketawang Puspawarna', desc: 'Flower arrangement', duration: '6:33' },
+    { title: 'Lancaran Kebogiro', desc: 'Festive celebration', duration: '4:18' },
+];
 ---
 
-<Layout title="Welcome to Astro.">
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
+<Layout title="Taman Merak — Indonesian Gamelan Ensemble · Belgrade">
+    <!-- Hero -->
+    <section class="flex flex-col items-center justify-center min-h-[85vh] px-6 text-center">
+        <WayangDivider class="mb-10 w-16 sm:w-20 text-gold/30" />
+
+        <h1 class="mb-5">Taman Merak</h1>
+
+        <p class="text-gold-dim tracking-[0.25em] uppercase text-xs sm:text-sm mb-8 font-medium">
+            Indonesian Gamelan Ensemble&ensp;&middot;&ensp;Belgrade
+        </p>
+
+        <p class="max-w-sm text-cream-muted leading-relaxed text-sm sm:text-base">
+            Exploring the rich traditions of Javanese and Balinese gamelan music in the heart of the Balkans.
+        </p>
+
+        <nav class="mt-12 flex gap-8 text-[0.65rem] tracking-[0.25em] uppercase">
+            <a href="#gallery" class="text-gold-dim hover:text-gold transition-colors">Gallery</a>
+            <a href="#listen" class="text-gold-dim hover:text-gold transition-colors">Listen</a>
+        </nav>
+    </section>
+
+    <!-- Gallery -->
+    <section class="px-6 py-16 sm:py-24 max-w-4xl mx-auto w-full" id="gallery">
+        <div class="text-center mb-10">
+            <h2>Gallery</h2>
+            <div class="mt-3 mx-auto w-12 h-px bg-gold/20"></div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
+            <div class="photo-card photo-pattern-1"></div>
+            <div class="photo-card photo-pattern-2"></div>
+            <div class="photo-card photo-pattern-3"></div>
+            <div class="photo-card photo-pattern-4"></div>
+            <div class="photo-card photo-pattern-5"></div>
+            <div class="photo-card photo-pattern-6"></div>
+        </div>
+
+        <div class="text-center mt-8">
+            <a
+                href="#"
+                class="inline-block text-xs tracking-[0.2em] uppercase text-gold-dim hover:text-gold transition-colors"
+            >
+                Follow on Instagram &rarr;
+            </a>
+        </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="flex justify-center py-4">
+        <div class="w-px h-16 bg-gold/10"></div>
+    </div>
+
+    <!-- Music -->
+    <section class="px-6 py-16 sm:py-24 max-w-2xl mx-auto w-full" id="listen">
+        <div class="text-center mb-10">
+            <h2>Listen</h2>
+            <div class="mt-3 mx-auto w-12 h-px bg-gold/20"></div>
+        </div>
+
+        <div class="flex flex-col gap-3">
+            {
+                tracks.map((track) => (
+                    <div class="track-card">
+                        <button class="play-btn" aria-label={`Play ${track.title}`}>
+                            <svg
+                                width="12"
+                                height="14"
+                                viewBox="0 0 12 14"
+                                fill="currentColor"
+                                class="ml-0.5"
+                            >
+                                <polygon points="1,0 12,7 1,14" />
+                            </svg>
+                        </button>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-gold-light text-sm font-medium">{track.title}</p>
+                            <p class="text-cream-muted text-xs mt-0.5">{track.desc}</p>
+                        </div>
+                        <span class="text-cream-muted text-xs tabular-nums">{track.duration}</span>
+                    </div>
+                ))
+            }
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="px-6 pt-16 pb-12 sm:pt-24 sm:pb-16 text-center">
+        <WayangDivider class="mx-auto mb-8 w-8 text-gold/20" />
+        <p class="text-cream-muted text-xs tracking-[0.2em]">Taman Merak&ensp;&middot;&ensp;Belgrade, Serbia</p>
+    </footer>
 </Layout>
