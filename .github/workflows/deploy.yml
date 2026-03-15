@@ -19,10 +19,17 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
+
+      # --- NEW STEP: The Nuclear Option ---
+      - name: Force Node 22 installation
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.14.0'
+
       - name: Install, build, and upload your site
         uses: withastro/action@v3
         with:
-          node-version: 22    # <-- Add these two lines exactly like this!
+          node-version: '22.14.0'
  
   deploy:
     needs: build
