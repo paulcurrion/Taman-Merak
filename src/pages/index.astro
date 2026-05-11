@@ -1,6 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import WayangDivider from '../components/WayangDivider.astro';
+---
+import { Image } from 'astro:assets';
+import logo from '..public/images/Taman%20Merak%20Motif.jpeg';
+---
 
 export const prerender = true;
 
@@ -17,7 +21,12 @@ const tracks = [
 <Layout title="Taman Merak — Gamelan Ensemble Belgrade">
     <!-- Hero -->
     <section class="flex flex-col items-center justify-center min-h-[85vh] px-6 text-center">
-        <WayangDivider class="mb-10 w-16 sm:w-20 text-gold" />
+
+<header>
+  <a href="/">
+    <Image src={logo} alt="Company Logo" width={150} height={50} />
+  </a>
+</header>
 
         <h1 class="mb-5">Taman Merak</h1>
 
